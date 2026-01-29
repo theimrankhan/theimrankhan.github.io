@@ -976,4 +976,107 @@ tbody tr:last-child td {
         background: linear-gradient(135deg, #334155, #475569);
         border-color: #475569;
     }
+    
+    .info-box {
+        background: #1e3a5f;
+        border-left-color: #3b82f6;
+    }
+    
+    .info-box h4 {
+        color: #93c5fd;
+    }
+    
+    .info-box p, .info-box ul, .info-box li {
+        color: #bfdbfe;
+    }
+    
+    .feature-grid .feature-item {
+        background: #334155;
+    }
 }
+
+/* ===== New Styling for Extended Answers ===== */
+.info-box {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border-left: 4px solid #3b82f6;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.info-box h4 {
+    color: #1e40af;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.info-box p, .info-box ul, .info-box li {
+    color: #1e3a8a;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.feature-item {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.feature-item strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.feature-item ul {
+    margin: 0.5rem 0 0 1rem;
+    font-size: 0.9rem;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: 2rem 0;
+}
+
+/* Enhanced Table Styling for Detailed Answers */
+.answer table {
+    margin: 1rem 0;
+}
+
+.answer th {
+    white-space: nowrap;
+}
+
+/* Better List Styling */
+.answer ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.answer ol li {
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+}
+
+/* Code Formatting in Tables */
+.answer td code {
+    background: #f1f5f9;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: #0f172a;
+}
+
