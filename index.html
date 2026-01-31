@@ -1,589 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSO Final Revision Notes</title>
+    <meta name="description" content="Complete CSO (Computer System Organization) revision notes for exam preparation">
+    <meta name="theme-color" content="#6366f1">
+    <title>CSO Notes | Complete Revision Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;700;800&display=swap');
-
         :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #0f172a;
             --accent: #f59e0b;
             --accent-light: #fbbf24;
-            --accent-dark: #d97706;
-            --bg: #f8fafc;
-            --text: #1e293b;
-            --text-light: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-dark: #1e293b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
             --border: #e2e8f0;
-            --card-bg: #ffffff;
-            --code-bg: #1e293b;
             --success: #10b981;
+            --success-bg: #d1fae5;
             --warning: #f59e0b;
+            --warning-bg: #fef3c7;
             --danger: #ef4444;
+            --danger-bg: #fee2e2;
             --info: #3b82f6;
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
-            --shadow-lg: 0 10px 40px rgba(0,0,0,0.15)
+            --info-bg: #dbeafe;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
             line-height: 1.7;
             overflow-x: hidden;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale
         }
 
-        img, svg, video, canvas {
-            max-width: 100%;
-            height: auto;
-            display: block
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, #334155 50%, var(--secondary) 100%);
+        /* =============== HEADER =============== */
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
-            z-index: 1000;
-            box-shadow: var(--shadow-lg);
-            border-bottom: 4px solid var(--accent);
-            overflow: hidden
+            overflow: hidden;
         }
 
-        header::before {
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        header h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-            animation: fadeInDown 0.8s ease;
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2)
+            z-index: 1;
         }
 
-        header p {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        .header-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             opacity: 0.9;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            position: relative
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Navigation Styles */
-        nav {
-            background: var(--card-bg);
-            padding: 1rem 1.5rem;
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* =============== NAVIGATION =============== */
+        .nav {
+            background: var(--bg-card);
             position: sticky;
             top: 0;
-            z-index: 999;
+            z-index: 1000;
             box-shadow: var(--shadow-md);
-            border-bottom: 3px solid var(--accent)
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            position: relative
+            height: 70px;
         }
 
-        /* Hamburger Menu */
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-menu a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             padding: 10px;
+            gap: 5px;
             z-index: 1001;
-            background: var(--accent);
-            border-radius: 8px;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%)
         }
 
         .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            border-radius: 3px;
-            transition: all 0.3s ease
+            width: 24px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px)
+            transform: rotate(45deg) translate(5px, 5px);
         }
-
         .hamburger.active span:nth-child(2) {
-            opacity: 0
+            opacity: 0;
         }
-
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px)
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        nav ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            list-style: none
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        nav li {
-            list-style: none
+        .nav-overlay.active {
+            opacity: 1;
         }
 
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: transparent;
-            border: 2px solid transparent
-        }
-
-        nav a:hover {
-            background: var(--gradient-accent);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4)
-        }
-
-        .container {
+        /* =============== MAIN CONTENT =============== */
+        .main {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem
+            padding: 2rem 1rem;
         }
 
-        section {
-            background: var(--card-bg);
-            margin: 2rem 0;
+        /* =============== CHAPTER CARDS =============== */
+        .chapter {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
             padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-left: 6px solid var(--accent);
-            animation: fadeIn 0.6s ease;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
             position: relative;
-            overflow: hidden
+            overflow: hidden;
         }
 
-        section::before {
+        .chapter::before {
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, transparent 100%);
-            border-radius: 0 20px 0 100%
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
         }
 
-        section h2 {
-            font-family: 'Crimson Pro', serif;
-            color: var(--primary);
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid var(--accent);
+        .chapter-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            position: relative
+            margin-bottom: 2rem;
         }
 
-        section h3 {
+        .chapter-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .chapter-title h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 700;
             color: var(--secondary);
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 0.25rem;
+        }
+
+        .chapter-title p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* =============== SECTION STYLES =============== */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
             margin: 2rem 0 1rem;
             padding-left: 1rem;
-            border-left: 4px solid var(--accent-light);
-            position: relative
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        section h4 {
-            color: var(--text);
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
             margin: 1.5rem 0 0.75rem;
-            font-weight: 600
         }
 
-        /* Improved Info Boxes */
-        .info-box {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border-left: 5px solid var(--info);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
-            position: relative;
-            overflow: hidden
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
-        .info-box::before {
-            content: 'ℹ️';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            opacity: 0.3
-        }
-
-        .warning-box {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-            border-left: 5px solid var(--warning);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);
-            position: relative;
-            overflow: hidden
-        }
-
-        .warning-box::before {
-            content: '⚠️';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            opacity: 0.3
-        }
-
-        .success-box {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-left: 5px solid var(--success);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
-            position: relative;
-            overflow: hidden
-        }
-
-        .success-box::before {
-            content: '✅';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            opacity: 0.3
-        }
-
-        .danger-box {
-            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-            border-left: 5px solid var(--danger);
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.1);
-            position: relative;
-            overflow: hidden
-        }
-
-        .danger-box::before {
-            content: '🚨';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            opacity: 0.3
-        }
-
-        .formula-box {
-            background: var(--code-bg);
-            color: #fbbf24;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
+        /* =============== TABLES =============== */
+        .table-container {
             overflow-x: auto;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            border: 2px solid var(--accent);
-            white-space: pre-wrap;
-            position: relative
-        }
-
-        .formula-box::before {
-            content: '📝';
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.2rem;
-            opacity: 0.5
-        }
-
-        /* Table Wrapper for Mobile Scroll */
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
             margin: 1.5rem 0;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm)
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            min-width: 100%
+            min-width: 500px;
         }
 
         th {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
             color: white;
             padding: 1rem;
             text-align: left;
-            font-weight: 700;
-            font-size: 0.95rem;
-            white-space: nowrap
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border)
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
         }
 
         tr:hover {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)
+            background: #f8fafc;
         }
 
         tr:last-child td {
-            border-bottom: none
+            border-bottom: none;
         }
 
-        ul,
-        ol {
-            margin: 1rem 0 1rem 2rem
+        /* =============== INFO BOXES =============== */
+        .box {
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md);
+            margin: 1rem 0;
+            position: relative;
+            border-left: 4px solid;
         }
 
-        li {
-            margin: 0.5rem 0;
-            line-height: 1.8
+        .box-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .box-info {
+            background: var(--info-bg);
+            border-color: var(--info);
+        }
+        .box-info .box-title { color: var(--info); }
+
+        .box-success {
+            background: var(--success-bg);
+            border-color: var(--success);
+        }
+        .box-success .box-title { color: var(--success); }
+
+        .box-warning {
+            background: var(--warning-bg);
+            border-color: var(--warning);
+        }
+        .box-warning .box-title { color: var(--warning); }
+
+        .box-danger {
+            background: var(--danger-bg);
+            border-color: var(--danger);
+        }
+        .box-danger .box-title { color: var(--danger); }
+
+        /* =============== CODE/FORMULA BOX =============== */
+        .code-box {
+            background: var(--bg-dark);
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .code-box .highlight {
+            color: var(--accent);
         }
 
         code {
-            background: var(--code-bg);
-            color: var(--accent-light);
-            padding: 0.2rem 0.6rem;
+            background: var(--bg-dark);
+            color: var(--accent);
+            padding: 0.2rem 0.5rem;
             border-radius: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9em
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
         }
 
-        pre {
-            background: var(--code-bg);
-            color: #e2e8f0;
-            padding: 1.5rem;
-            border-radius: 10px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border: 2px solid var(--accent)
-        }
-
-        pre code {
-            background: none;
-            padding: 0
-        }
-
-        footer {
-            background: linear-gradient(135deg, var(--primary) 0%, #334155 50%, var(--secondary) 100%);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none
-        }
-
-        footer p {
-            position: relative;
-            margin: 0.5rem 0
-        }
-
-        footer a {
-            color: var(--accent-light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative
-        }
-
-        footer a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-light);
-            transition: width 0.3s ease
-        }
-
-        footer a:hover {
-            color: white
-        }
-
-        footer a:hover::after {
-            width: 100%
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .collapsible {
-            background: var(--gradient-accent);
-            color: white;
-            cursor: pointer;
-            padding: 1.2rem 1.5rem;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 12px;
+        /* =============== ACCORDION =============== */
+        .accordion {
             margin: 1rem 0;
-            transition: all 0.3s ease;
-            font-family: 'Manrope', sans-serif;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--bg-main);
+            padding: 1rem 1.25rem;
+            cursor: pointer;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: space-between
+            font-weight: 600;
+            transition: var(--transition);
         }
 
-        .collapsible:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4)
+        .accordion-header:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        .collapsible:active {
-            transform: translateY(0)
+        .accordion-icon {
+            font-size: 0.75rem;
+            transition: transform 0.3s;
         }
 
-        .collapsible:after {
-            content: '▼';
-            font-size: 0.8rem;
-            transition: transform 0.3s ease
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
         }
 
-        .collapsible.active:after {
-            transform: rotate(-180deg)
-        }
-
-        .content {
+        .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 0 0 12px 12px;
-            margin-top: -0.5rem
+            transition: max-height 0.3s ease-out;
         }
 
-        .content-inner {
+        .accordion-body {
+            padding: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* =============== LISTS =============== */
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        li::marker {
+            color: var(--primary);
+        }
+
+        /* =============== QUICK CARDS GRID =============== */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .quick-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
             padding: 1.5rem;
-            border: 2px solid var(--border);
-            border-top: none;
-            border-radius: 0 0 12px 12px
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Back to top button */
+        .quick-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+
+        .quick-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .quick-card p, .quick-card li {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            position: relative;
+            color: white;
+        }
+
+        .quick-card ul {
+            margin-left: 1.25rem;
+        }
+
+        .quick-card li::marker {
+            color: var(--accent);
+        }
+
+        /* =============== FOOTER =============== */
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--accent-light);
+        }
+
+        /* =============== BACK TO TOP =============== */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 2rem;
+            right: 2rem;
             width: 50px;
             height: 50px;
-            background: var(--gradient-accent);
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 50%;
@@ -592,1363 +607,1328 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000
+            transition: var(--transition);
+            z-index: 999;
         }
 
         .back-to-top.visible {
             opacity: 1;
-            visibility: visible
+            visibility: visible;
         }
 
         .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg)
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
 
-        /* Overlay for mobile menu */
-        .nav-overlay {
-            display: none;
+        /* =============== PROGRESS BAR =============== */
+        .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 997;
-            opacity: 0;
-            transition: opacity 0.3s ease
+            height: 4px;
+            background: var(--primary);
+            z-index: 1001;
+            transition: width 0.1s;
         }
 
-        .nav-overlay.active {
-            opacity: 1
-        }
-
-        /* ============ RESPONSIVE STYLES ============ */
-
-        /* Large Desktop */
-        @media (max-width: 1400px) {
-            .container {
-                max-width: 1100px;
-                padding: 1.5rem
-            }
-        }
-
-        /* Desktop */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 960px
-            }
-
-            header h1 {
-                font-size: 2.5rem
-            }
-
-            section h2 {
-                font-size: 2rem
-            }
-        }
-
-        /* Tablet Landscape */
-        @media (max-width: 992px) {
-            .container {
-                max-width: 720px;
-                padding: 1.25rem
-            }
-
-            header {
-                padding: 2.5rem 1.5rem
-            }
-
-            header h1 {
-                font-size: 2.2rem
-            }
-
-            section {
-                padding: 2rem;
-                margin: 1.5rem 0
-            }
-
-            section h2 {
-                font-size: 1.9rem
-            }
-
-            section h3 {
-                font-size: 1.4rem
-            }
-
-            nav ul {
-                gap: 0.75rem
-            }
-
-            nav a {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem
-            }
-        }
-
-        /* Tablet & Mobile - Hamburger Menu */
+        /* =============== RESPONSIVE =============== */
         @media (max-width: 768px) {
             .hamburger {
-                display: flex
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 80px 1.5rem 2rem;
+                box-shadow: var(--shadow-xl);
+                transition: right 0.3s ease;
+                z-index: 999;
+                gap: 0.25rem;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                padding: 1rem;
+                background: var(--bg-main);
+                border-radius: var(--radius-sm);
+                font-size: 1rem;
             }
 
             .nav-overlay {
-                display: block
+                display: block;
             }
 
-            nav {
-                padding: 0.8rem 1rem
+            .header {
+                padding: 3rem 1.5rem;
             }
 
-            .nav-container {
-                justify-content: center
+            .header-stats {
+                gap: 1.5rem;
             }
 
-            nav ul {
-                position: fixed;
-                top: 0;
-                right: -280px;
-                width: 280px;
-                height: 100vh;
-                background: var(--card-bg);
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 80px 20px 30px;
-                gap: 0.5rem;
-                box-shadow: -5px 0 30px rgba(0,0,0,0.2);
-                transition: right 0.3s ease;
-                z-index: 998;
-                overflow-y: auto
-            }
-
-            nav ul.active {
-                right: 0
-            }
-
-            nav a {
-                padding: 1rem 1.2rem;
-                font-size: 1rem;
-                border-radius: 10px;
-                background: #f8fafc;
-                justify-content: flex-start;
-                width: 100%
-            }
-
-            nav a:hover {
-                transform: translateX(5px)
-            }
-
-            header {
-                padding: 2rem 1.5rem
-            }
-
-            .container {
-                padding: 1rem
-            }
-
-            section {
-                padding: 1.5rem;
-                margin: 1rem 0;
-                border-radius: 14px;
-                border-left-width: 5px
-            }
-
-            section h2 {
+            .stat-number {
                 font-size: 1.5rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem
             }
 
-            section h3 {
-                font-size: 1.25rem;
-                margin: 1.5rem 0 0.75rem
+            .chapter {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                border-radius: var(--radius-lg);
             }
 
-            section h4 {
-                font-size: 1.1rem
+            .chapter-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
             }
 
-            /* Table responsive */
-            .table-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin: 1rem 0;
-                border-radius: 10px;
-                box-shadow: var(--shadow-sm)
+            .section-title {
+                font-size: 1.1rem;
             }
 
-            table {
-                font-size: 0.85rem;
-                min-width: 500px
-            }
-
-            th, td {
-                padding: 0.75rem 0.6rem;
-                white-space: nowrap
-            }
-
-            .formula-box {
-                padding: 1rem;
-                font-size: 0.85rem;
-                overflow-x: auto
-            }
-
-            .info-box,
-            .warning-box,
-            .success-box,
-            .danger-box {
-                padding: 1.2rem;
-                margin: 1rem 0
-            }
-
-            .collapsible {
-                padding: 1rem;
-                font-size: 0.95rem
-            }
-
-            .content-inner {
-                padding: 1rem
-            }
-
-            pre {
-                padding: 1rem;
-                font-size: 0.85rem;
-                overflow-x: auto
-            }
-
-            footer {
-                padding: 1.5rem 1rem
-            }
-
-            .emoji {
-                font-size: 1.2rem
+            .quick-grid {
+                grid-template-columns: 1fr;
             }
 
             .back-to-top {
-                bottom: 20px;
-                right: 20px;
+                bottom: 1.5rem;
+                right: 1.5rem;
                 width: 45px;
                 height: 45px;
-                font-size: 1.3rem
             }
         }
 
-        /* Mobile - Small screens */
         @media (max-width: 480px) {
-            header {
-                padding: 1.5rem 1rem
+            .header {
+                padding: 2rem 1rem;
             }
 
-            nav ul {
-                width: 260px;
-                right: -260px
+            .header h1 {
+                font-size: 1.75rem;
             }
 
-            .container {
-                padding: 0.75rem
+            .chapter {
+                padding: 1.25rem;
             }
 
-            section {
-                padding: 1.2rem;
-                border-radius: 12px;
-                margin: 0.8rem 0
+            .chapter-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
             }
 
-            section h2 {
-                font-size: 1.3rem;
-                padding-bottom: 0.75rem
+            .chapter-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.25rem;
             }
 
-            section h3 {
-                font-size: 1.1rem;
-                padding-left: 0.8rem
+            .nav-menu {
+                width: 280px;
+                right: -280px;
             }
 
-            section h4 {
-                font-size: 1rem
-            }
-
-            ul, ol {
-                margin: 0.75rem 0 0.75rem 1.2rem
-            }
-
-            li {
-                margin: 0.4rem 0;
-                font-size: 0.95rem
+            .table-container {
+                margin: 1rem -0.5rem;
+                border-radius: 0;
             }
 
             table {
-                font-size: 0.8rem
+                font-size: 0.8rem;
             }
 
             th, td {
-                padding: 0.6rem 0.5rem
+                padding: 0.75rem 0.5rem;
             }
 
-            .formula-box {
-                padding: 0.9rem;
-                font-size: 0.8rem
-            }
-
-            .info-box,
-            .warning-box,
-            .success-box,
-            .danger-box {
+            .box {
                 padding: 1rem;
-                border-left-width: 4px
             }
 
-            .collapsible {
-                padding: 0.9rem;
-                font-size: 0.9rem
-            }
-
-            code {
-                padding: 0.15rem 0.4rem;
-                font-size: 0.8em
-            }
-
-            pre {
-                padding: 0.9rem;
-                font-size: 0.8rem
-            }
-
-            footer {
-                padding: 1.2rem 1rem;
-                font-size: 0.9rem
+            .code-box {
+                padding: 1rem;
+                font-size: 0.8rem;
             }
         }
 
-        /* Extra small screens */
-        @media (max-width: 360px) {
-            header h1 {
-                font-size: 1.4rem
-            }
-
-            section {
-                padding: 1rem
-            }
-
-            section h2 {
-                font-size: 1.2rem
-            }
-
-            section h3 {
-                font-size: 1rem
-            }
-
-            nav ul {
-                width: 240px;
-                right: -240px
-            }
-
-            nav a {
-                padding: 0.9rem 1rem;
-                font-size: 0.9rem
-            }
-
-            .formula-box {
-                font-size: 0.75rem;
-                padding: 0.8rem
-            }
-
-            .collapsible {
-                font-size: 0.85rem;
-                padding: 0.8rem
-            }
-
-            pre {
-                font-size: 0.75rem
-            }
-        }
-
-        /* Landscape phone adjustments */
-        @media (max-height: 500px) and (orientation: landscape) {
-            header {
-                padding: 1rem
-            }
-
-            nav ul {
-                padding-top: 60px
-            }
-        }
-
-        /* Print styles */
+        /* =============== PRINT STYLES =============== */
         @media print {
-            header, nav, footer, .back-to-top, .hamburger {
-                display: none
+            .nav, .footer, .back-to-top, .hamburger, .progress-bar {
+                display: none !important;
             }
 
-            section {
+            .chapter {
                 break-inside: avoid;
                 box-shadow: none;
-                border: 1px solid #ccc
+                border: 1px solid #ccc;
             }
 
-            .collapsible {
-                display: none
-            }
-
-            .content {
+            .accordion-content {
                 max-height: none !important;
-                display: block
             }
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600
-        }
-
-        .emoji {
-            font-size: 1.5rem;
-            margin-right: 0.5rem
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <h1>🎓 Computer System Organization</h1>
-        <p>Complete Final Revision Notes - Your Ultimate CSO Guide</p>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <span class="header-badge">📚 Complete Study Material</span>
+            <h1>Computer System Organization</h1>
+            <p>Your ultimate revision guide for CSO exam preparation. Master all concepts from Number Systems to Memory Organization.</p>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Chapters</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Topics</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Formulas</div>
+                </div>
+            </div>
+        </div>
     </header>
-    <nav>
+
+    <!-- Navigation -->
+    <nav class="nav">
         <div class="nav-container">
-            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <div class="nav-logo">
+                <span>📖</span>
+                CSO Notes
+            </div>
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <ul id="navMenu">
-                <li><a href="#ch1" onclick="closeMenu()">📊 Number System</a></li>
-                <li><a href="#ch2" onclick="closeMenu()">💻 Computer Overview</a></li>
-                <li><a href="#ch3" onclick="closeMenu()">⚙️ Processor</a></li>
-                <li><a href="#ch4" onclick="closeMenu()">🗄️ Memory & I/O</a></li>
-                <li><a href="#rev" onclick="closeMenu()">⚡ Quick Revision</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#ch1">📊 Number System</a></li>
+                <li><a href="#ch2">💻 Computer System</a></li>
+                <li><a href="#ch3">⚙️ Processor</a></li>
+                <li><a href="#ch4">🗄️ Memory & I/O</a></li>
+                <li><a href="#ch5">⚡ Quick Revision</a></li>
             </ul>
         </div>
-        <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+        <div class="nav-overlay" id="navOverlay"></div>
     </nav>
-    
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-        ↑
-    </button>
-    <div class="container">
-        <section id="ch1">
-            <h2><span class="emoji">📊</span>Chapter 1: Number System & Combinational Logic</h2>
-            <h3>Number Systems</h3>
-            <p>A number system defines how numbers are represented using digits and symbols.</p>
-            <table>
-                <tr>
-                    <th>System</th>
-                    <th>Base</th>
-                    <th>Digits</th>
-                    <th>Example</th>
-                </tr>
-                <tr>
-                    <td>Binary</td>
-                    <td>2</td>
-                    <td>0,1</td>
-                    <td>1010₂</td>
-                </tr>
-                <tr>
-                    <td>Octal</td>
-                    <td>8</td>
-                    <td>0-7</td>
-                    <td>52₈</td>
-                </tr>
-                <tr>
-                    <td>Decimal</td>
-                    <td>10</td>
-                    <td>0-9</td>
-                    <td>42₁₀</td>
-                </tr>
-                <tr>
-                    <td>Hexadecimal</td>
-                    <td>16</td>
-                    <td>0-9,A-F</td>
-                    <td>2A₁₆</td>
-                </tr>
-            </table>
-            <h4>Conversions:</h4>
-            <button class="collapsible">Binary to Decimal</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Multiply each bit by 2 raised to its position and sum.</p>
-                    <div class="formula-box">(1011)₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8+0+2+1 = 11₁₀</div>
-                </div>
-            </div>
-            <button class="collapsible">Decimal to Binary</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Divide by 2 repeatedly, note remainders in reverse.</p>
-                    <div class="formula-box">25÷2=12 rem 1 (LSB)
-                        12÷2=6 rem 0
-                        6÷2=3 rem 0
-                        3÷2=1 rem 1
-                        1÷2=0 rem 1 (MSB)
-                        Result: 11001₂</div>
-                </div>
-            </div>
-            <h3>Signed and Unsigned Numbers</h3>
-            <div class="info-box">
-                <h4>Unsigned:</h4>
-                <p>Only positive values. Range for n bits: 0 to 2ⁿ-1</p>
-                <p>Example: 8-bit → 0 to 255</p>
-            </div>
-            <div class="warning-box">
-                <h4>Signed (2's Complement):</h4>
-                <p>MSB is sign bit (0=positive, 1=negative)</p>
-                <p>Range for n bits: -(2ⁿ⁻¹) to (2ⁿ⁻¹ - 1)</p>
-                <p>Example: 8-bit → -128 to +127</p>
-            </div>
-            <h3>Complements</h3>
-            <div class="formula-box">1's Complement: Invert all bits
-                1010 → 0101
 
-                2's Complement: 1's complement + 1
-                1010 → 0101 + 1 = 0110</div>
-            <h3>Logic Gates</h3>
-            <table>
-                <tr>
-                    <th>Gate</th>
-                    <th>Operation</th>
-                    <th>Truth Table</th>
-                </tr>
-                <tr>
-                    <td>AND</td>
-                    <td>Y = A·B</td>
-                    <td>11→1 else 0</td>
-                </tr>
-                <tr>
-                    <td>OR</td>
-                    <td>Y = A+B</td>
-                    <td>00→0 else 1</td>
-                </tr>
-                <tr>
-                    <td>NOT</td>
-                    <td>Y = A'</td>
-                    <td>0→1, 1→0</td>
-                </tr>
-                <tr>
-                    <td>NAND</td>
-                    <td>Y = (A·B)'</td>
-                    <td>11→0 else 1</td>
-                </tr>
-                <tr>
-                    <td>NOR</td>
-                    <td>Y = (A+B)'</td>
-                    <td>00→1 else 0</td>
-                </tr>
-                <tr>
-                    <td>XOR</td>
-                    <td>Y = A⊕B</td>
-                    <td>Different→1</td>
-                </tr>
-                <tr>
-                    <td>XNOR</td>
-                    <td>Y = (A⊕B)'</td>
-                    <td>Same→1</td>
-                </tr>
-            </table>
-            <div class="warning-box"><strong>Universal Gates:</strong> NAND and NOR can implement any other gate</div>
-            <h3>Boolean Algebra Laws</h3>
-            <div class="formula-box">Identity: A+0=A, A·1=A
-                Null: A+1=1, A·0=0
-                Idempotent: A+A=A, A·A=A
-                Complement: A+A'=1, A·A'=0, (A')'=A
-                Commutative: A+B=B+A, A·B=B·A
-                Associative: (A+B)+C=A+(B+C)
-                Distributive: A·(B+C)=A·B+A·C
-                Absorption: A+A·B=A, A·(A+B)=A
-                De Morgan's: (A+B)'=A'·B', (A·B)'=A'+B'</div>
-            <h3>SOP and POS</h3>
-            <div class="info-box">
-                <h4>Sum of Products (SOP):</h4>
-                <p>Sum of minterms. Example: F = A'B'C + A'BC' + ABC</p>
-                <p>From truth table: Select rows where output=1, write product terms</p>
-            </div>
-            <div class="warning-box">
-                <h4>Product of Sums (POS):</h4>
-                <p>Product of maxterms. Example: F = (A+B+C)·(A+B'+C)</p>
-                <p>From truth table: Select rows where output=0, write sum terms</p>
-            </div>
-            <h3>K-Map Simplification</h3>
-            <p>Graphical method to minimize Boolean expressions</p>
-            <div class="success-box"><strong>K-Map Rules:</strong>
-                <ul>
-                    <li>Group sizes: 1, 2, 4, 8, 16 (powers of 2)</li>
-                    <li>Make groups as large as possible</li>
-                    <li>Minimize number of groups</li>
-                    <li>Groups can overlap and wrap around</li>
-                    <li>Every 1 must be in at least one group</li>
-                </ul>
-            </div>
-            <h3>Adders</h3>
-            <div class="info-box">
-                <h4>Half Adder:</h4>
-                <p>Adds two bits. Outputs: Sum and Carry</p>
-                <div class="formula-box">Sum = A ⊕ B
-                    Carry = A · B</div>
-            </div>
-            <div class="success-box">
-                <h4>Full Adder:</h4>
-                <p>Adds three bits (A, B, Carry-in)</p>
-                <div class="formula-box">Sum = A ⊕ B ⊕ Cin
-                    Carry-out = AB + BCin + ACin</div>
-            </div>
-            <table>
-                <tr>
-                    <th>Feature</th>
-                    <th>Serial Adder</th>
-                    <th>Parallel Adder</th>
-                </tr>
-                <tr>
-                    <td>Speed</td>
-                    <td>Slow</td>
-                    <td>Fast</td>
-                </tr>
-                <tr>
-                    <td>Hardware</td>
-                    <td>1 full adder</td>
-                    <td>n full adders</td>
-                </tr>
-                <tr>
-                    <td>Time</td>
-                    <td>n cycles</td>
-                    <td>1 cycle</td>
-                </tr>
-            </table>
-            <h3>Combinational Circuits</h3>
-            <div class="info-box">
-                <h4>Decoder:</h4>
-                <p>n inputs → 2ⁿ outputs. Activates one output based on input.</p>
-                <p>Applications: Memory decoding, instruction decoding</p>
-            </div>
-            <div class="warning-box">
-                <h4>Encoder:</h4>
-                <p>2ⁿ inputs → n outputs. Converts input to binary code.</p>
-                <p>Priority Encoder: Encodes highest priority active input</p>
-            </div>
-            <div class="success-box">
-                <h4>Multiplexer (MUX):</h4>
-                <p>Selects one of many inputs using select lines.</p>
-                <p>2ⁿ data inputs + n select lines → 1 output</p>
-                <p>Example: 4:1 MUX has 4 inputs, 2 select lines</p>
-            </div>
-            <div class="danger-box">
-                <h4>Demultiplexer (DEMUX):</h4>
-                <p>Routes one input to one of many outputs.</p>
-                <p>1 input + n select lines → 2ⁿ outputs</p>
-            </div>
-        </section>
+    <!-- Main Content -->
+    <main class="main">
 
-        <section id="ch2">
-            <h2><span class="emoji">💻</span>Chapter 2: Computer System & Arithmetic</h2>
-            <h3>Computer Components</h3>
-            <div class="info-box">
-                <h4>CPU:</h4>
-                <ul>
-                    <li>Control Unit: Directs operations</li>
-                    <li>ALU: Performs arithmetic/logical operations</li>
-                    <li>Registers: Fast storage</li>
-                </ul>
-            </div>
-            <div class="warning-box">
-                <h4>Memory:</h4>
-                <ul>
-                    <li>RAM: Volatile, fast, primary memory</li>
-                    <li>Cache: Very fast, small</li>
-                    <li>ROM: Non-volatile, boot programs</li>
-                    <li>HDD/SSD: Secondary storage</li>
-                </ul>
-            </div>
-            <h3>Bus Structure</h3>
-            <table>
-                <tr>
-                    <th>Bus</th>
-                    <th>Purpose</th>
-                    <th>Direction</th>
-                </tr>
-                <tr>
-                    <td>Data Bus</td>
-                    <td>Carries data</td>
-                    <td>Bidirectional</td>
-                </tr>
-                <tr>
-                    <td>Address Bus</td>
-                    <td>Carries addresses</td>
-                    <td>Unidirectional</td>
-                </tr>
-                <tr>
-                    <td>Control Bus</td>
-                    <td>Carries control signals</td>
-                    <td>Bidirectional</td>
-                </tr>
-            </table>
-            <div class="formula-box">Maximum Memory = 2ⁿ locations (n = address bus bits)
-                Example: 32-bit address bus → 2³² = 4 GB</div>
-            <h3>Registers</h3>
-            <table>
-                <tr>
-                    <th>Register</th>
-                    <th>Purpose</th>
-                </tr>
-                <tr>
-                    <td>PC</td>
-                    <td>Program Counter - next instruction address</td>
-                </tr>
-                <tr>
-                    <td>IR</td>
-                    <td>Instruction Register - current instruction</td>
-                </tr>
-                <tr>
-                    <td>MAR</td>
-                    <td>Memory Address Register</td>
-                </tr>
-                <tr>
-                    <td>MBR/MDR</td>
-                    <td>Memory Buffer/Data Register</td>
-                </tr>
-                <tr>
-                    <td>AC</td>
-                    <td>Accumulator - stores results</td>
-                </tr>
-                <tr>
-                    <td>SP</td>
-                    <td>Stack Pointer</td>
-                </tr>
-                <tr>
-                    <td>PSW</td>
-                    <td>Program Status Word - flags</td>
-                </tr>
-            </table>
-            <h3>Stack Organization</h3>
-            <p>LIFO (Last In First Out) structure</p>
-            <div class="formula-box">PUSH: SP ← SP - 1; Memory[SP] ← Data
-                POP: Data ← Memory[SP]; SP ← SP + 1</div>
-            <p><strong>Applications:</strong> Function calls, expression evaluation, interrupt handling, recursion</p>
-            <h3>Addressing Modes</h3>
-            <button class="collapsible">Immediate Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Operand in instruction: MOV A, #25</p>
-                    <p>Fast, no memory access needed</p>
+        <!-- Chapter 1: Number Systems -->
+        <article class="chapter" id="ch1">
+            <div class="chapter-header">
+                <div class="chapter-icon">📊</div>
+                <div class="chapter-title">
+                    <h2>Chapter 1: Number System & Digital Logic</h2>
+                    <p>Binary, conversions, complements, gates, and combinational circuits</p>
                 </div>
             </div>
-            <button class="collapsible">Direct Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Address in instruction: MOV A, 500</p>
-                    <p>EA = 500</p>
-                </div>
-            </div>
-            <button class="collapsible">Indirect Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Address of address in instruction: MOV A, @500</p>
-                    <p>If M[500]=800, then EA=800</p>
-                </div>
-            </div>
-            <button class="collapsible">Register Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>Operand in register: MOV A, R1</p>
-                    <p>Very fast, no memory access</p>
-                </div>
-            </div>
-            <button class="collapsible">Indexed Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>EA = Base + Index</p>
-                    <p>MOV A, 100(R1): If R1=50, EA=150</p>
-                    <p>Great for arrays</p>
-                </div>
-            </div>
-            <button class="collapsible">Relative Addressing</button>
-            <div class="content">
-                <div class="content-inner">
-                    <p>EA = PC + Displacement</p>
-                    <p>Used in branching</p>
-                </div>
-            </div>
-            <h3>ALU Operations</h3>
-            <div class="info-box">
-                <h4>Addition:</h4>
-                <div class="formula-box"> 1011
-                    + 0110
-                    ------
-                    10001</div>
-                <p>Overflow: Carry in ≠ Carry out of MSB (signed)</p>
-            </div>
-            <div class="warning-box">
-                <h4>Subtraction (2's Complement):</h4>
-                <p>A - B = A + (2's complement of B)</p>
-                <div class="formula-box">1011 - 0110:
-                    1011 + 1010 (2's comp of 0110)
-                    = 10101 → 0101 (discard carry)</div>
-            </div>
-            <div class="success-box">
-                <h4>Multiplication:</h4>
-                <div class="formula-box"> 101
-                    × 11
-                    -----
-                    101
-                    101
-                    -----
-                    1111 = 15₁₀</div>
-                <p>Booth's Algorithm: Efficient for signed multiplication</p>
-            </div>
-            <div class="danger-box">
-                <h4>Logical Operations:</h4>
-                <ul>
-                    <li>AND: Both 1 → 1</li>
-                    <li>OR: Any 1 → 1</li>
-                    <li>XOR: Different → 1</li>
-                    <li>NOT: Invert</li>
-                    <li>Shift Left by n: Multiply by 2ⁿ</li>
-                    <li>Shift Right by n: Divide by 2ⁿ</li>
-                </ul>
-            </div>
-        </section>
 
-        <section id="ch3">
-            <h2><span class="emoji">⚙️</span>Chapter 3: Processor & Control Unit</h2>
-            <h3>Uniprocessor vs Multiprocessor</h3>
-            <table>
-                <tr>
-                    <th>Feature</th>
-                    <th>Uniprocessor</th>
-                    <th>Multiprocessor</th>
-                </tr>
-                <tr>
-                    <td>CPUs</td>
-                    <td>One</td>
-                    <td>Multiple</td>
-                </tr>
-                <tr>
-                    <td>Speed</td>
-                    <td>Slower</td>
-                    <td>Faster (parallel)</td>
-                </tr>
-                <tr>
-                    <td>Cost</td>
-                    <td>Cheaper</td>
-                    <td>Expensive</td>
-                </tr>
-                <tr>
-                    <td>Programming</td>
-                    <td>Simple</td>
-                    <td>Complex</td>
-                </tr>
-            </table>
-            <h3>Instruction Types</h3>
-            <ul>
-                <li><strong>Data Transfer:</strong> MOV, LOAD, STORE, PUSH, POP</li>
-                <li><strong>Arithmetic:</strong> ADD, SUB, MUL, DIV, INC, DEC</li>
-                <li><strong>Logical:</strong> AND, OR, XOR, NOT, SHL, SHR</li>
-                <li><strong>Control:</strong> JMP, JZ, CALL, RET, INT</li>
-            </ul>
-            <h3>Instruction Cycle</h3>
-            <div class="formula-box">1. FETCH: PC → MAR; Memory[MAR] → IR; PC ← PC+1
-                2. DECODE: Identify operation and operands
-                3. EXECUTE: Perform operation
-                4. INTERRUPT: Handle if pending</div>
-            <h3>Control Unit Types</h3>
-            <table>
-                <tr>
-                    <th>Feature</th>
-                    <th>Hardwired</th>
-                    <th>Microprogrammed</th>
-                </tr>
-                <tr>
-                    <td>Speed</td>
-                    <td>Faster</td>
-                    <td>Slower</td>
-                </tr>
-                <tr>
-                    <td>Flexibility</td>
-                    <td>Rigid</td>
-                    <td>Flexible</td>
-                </tr>
-                <tr>
-                    <td>Cost</td>
-                    <td>High for CISC</td>
-                    <td>Lower for CISC</td>
-                </tr>
-                <tr>
-                    <td>Best for</td>
-                    <td>RISC</td>
-                    <td>CISC</td>
-                </tr>
-            </table>
-            <h3>RISC vs CISC</h3>
-            <table>
-                <tr>
-                    <th>Feature</th>
-                    <th>RISC</th>
-                    <th>CISC</th>
-                </tr>
-                <tr>
-                    <td>Instructions</td>
-                    <td>Small set (<100)< /td>
-                    <td>Large set (200+)</td>
-                </tr>
-                <tr>
-                    <td>Length</td>
-                    <td>Fixed</td>
-                    <td>Variable</td>
-                </tr>
-                <tr>
-                    <td>Memory Access</td>
-                    <td>LOAD/STORE only</td>
-                    <td>Any instruction</td>
-                </tr>
-                <tr>
-                    <td>Registers</td>
-                    <td>Many (32+)</td>
-                    <td>Few (8-16)</td>
-                </tr>
-                <tr>
-                    <td>CPI</td>
-                    <td>~1</td>
-                    <td>2-15</td>
-                </tr>
-                <tr>
-                    <td>Pipeline</td>
-                    <td>Easy</td>
-                    <td>Complex</td>
-                </tr>
-                <tr>
-                    <td>Examples</td>
-                    <td>ARM, MIPS</td>
-                    <td>x86, 68000</td>
-                </tr>
-            </table>
-            <h3>Pipelining</h3>
-            <p>Overlapping instruction execution like assembly line</p>
-            <div class="success-box">
-                <h4>5-Stage Pipeline:</h4>
+            <h3 class="section-title">📐 Number Systems</h3>
+            <p>A number system is a way to represent numbers using a set of symbols and rules.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>System</th>
+                            <th>Base (Radix)</th>
+                            <th>Digits Used</th>
+                            <th>Example</th>
+                            <th>Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Binary</strong></td>
+                            <td>2</td>
+                            <td>0, 1</td>
+                            <td>1010₂ = 10</td>
+                            <td>Digital circuits, computers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Octal</strong></td>
+                            <td>8</td>
+                            <td>0-7</td>
+                            <td>52₈ = 42</td>
+                            <td>Unix permissions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Decimal</strong></td>
+                            <td>10</td>
+                            <td>0-9</td>
+                            <td>42₁₀</td>
+                            <td>Human counting</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hexadecimal</strong></td>
+                            <td>16</td>
+                            <td>0-9, A-F</td>
+                            <td>2A₁₆ = 42</td>
+                            <td>Memory addresses, colors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="subsection-title">Number Conversions</h4>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Binary ↔ Decimal Conversion
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Binary → Decimal:</strong> Multiply each bit by 2^position and sum</p>
+                            <div class="code-box">(1011)₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰
+       = 8 + 0 + 2 + 1 = <span class="highlight">11₁₀</span></div>
+                            
+                            <p><strong>Decimal → Binary:</strong> Divide by 2, note remainders (read bottom to top)</p>
+                            <div class="code-box">25 ÷ 2 = 12 remainder <span class="highlight">1</span> (LSB)
+12 ÷ 2 = 6  remainder <span class="highlight">0</span>
+6  ÷ 2 = 3  remainder <span class="highlight">0</span>
+3  ÷ 2 = 1  remainder <span class="highlight">1</span>
+1  ÷ 2 = 0  remainder <span class="highlight">1</span> (MSB)
+
+Result: 25₁₀ = <span class="highlight">11001₂</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Octal & Hexadecimal Conversion
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="code-box"><span class="highlight">Binary → Octal:</span> Group 3 bits from right
+101 110 = 56₈
+
+<span class="highlight">Binary → Hex:</span> Group 4 bits from right
+1010 1110 = AE₁₆
+
+<span class="highlight">Octal → Binary:</span> Each octal digit = 3 bits
+7₈ = 111, 5₈ = 101 → 75₈ = 111101₂
+
+<span class="highlight">Hex → Binary:</span> Each hex digit = 4 bits
+A₁₆ = 1010, F₁₆ = 1111 → AF₁₆ = 10101111₂</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Fractional Number Conversion
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Decimal Fraction → Binary:</strong> Multiply by 2, note integer parts</p>
+                            <div class="code-box">0.625 × 2 = <span class="highlight">1</span>.25
+0.25  × 2 = <span class="highlight">0</span>.50
+0.50  × 2 = <span class="highlight">1</span>.00
+
+Result: 0.625₁₀ = <span class="highlight">0.101₂</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title">➕ Signed Numbers & Complements</h3>
+            
+            <div class="quick-grid">
+                <div class="box box-info">
+                    <div class="box-title">ℹ️ Unsigned Numbers</div>
+                    <p>Only positive values. For n bits:</p>
+                    <p><strong>Range:</strong> 0 to 2ⁿ - 1</p>
+                    <p>Example: 8-bit → 0 to 255</p>
+                </div>
+                <div class="box box-warning">
+                    <div class="box-title">⚠️ Signed (2's Complement)</div>
+                    <p>MSB = Sign bit (0=+, 1=-)</p>
+                    <p><strong>Range:</strong> -2ⁿ⁻¹ to 2ⁿ⁻¹ - 1</p>
+                    <p>Example: 8-bit → -128 to +127</p>
+                </div>
+            </div>
+
+            <div class="code-box"><span class="highlight">1's Complement:</span> Invert all bits
+  1010 → 0101
+
+<span class="highlight">2's Complement:</span> 1's complement + 1
+  1010 → 0101 + 1 = 0110
+
+<span class="highlight">Finding negative number:</span>
+  -5 in 8-bit: 5 = 00000101
+  1's comp   = 11111010
+  2's comp   = 11111011 = -5</div>
+
+            <h3 class="section-title">🔌 Logic Gates</h3>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gate</th>
+                            <th>Symbol</th>
+                            <th>Expression</th>
+                            <th>Output = 1 when</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>AND</strong></td><td>⊓</td><td>Y = A·B</td><td>Both inputs = 1</td></tr>
+                        <tr><td><strong>OR</strong></td><td>⊔</td><td>Y = A+B</td><td>Any input = 1</td></tr>
+                        <tr><td><strong>NOT</strong></td><td>○</td><td>Y = A'</td><td>Input = 0</td></tr>
+                        <tr><td><strong>NAND</strong></td><td>⊓○</td><td>Y = (A·B)'</td><td>Not both 1</td></tr>
+                        <tr><td><strong>NOR</strong></td><td>⊔○</td><td>Y = (A+B)'</td><td>Both inputs = 0</td></tr>
+                        <tr><td><strong>XOR</strong></td><td>⊕</td><td>Y = A⊕B</td><td>Inputs are different</td></tr>
+                        <tr><td><strong>XNOR</strong></td><td>⊙</td><td>Y = (A⊕B)'</td><td>Inputs are same</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box box-danger">
+                <div class="box-title">🔴 Universal Gates</div>
+                <p><strong>NAND</strong> and <strong>NOR</strong> are universal gates - they can implement any other gate!</p>
+                <ul>
+                    <li>NOT using NAND: A' = (A·A)'</li>
+                    <li>AND using NAND: A·B = ((A·B)')'</li>
+                    <li>OR using NAND: A+B = ((A·A)'·(B·B)')'</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">📜 Boolean Algebra Laws</h3>
+            <div class="code-box"><span class="highlight">Identity Law:</span>      A + 0 = A       A · 1 = A
+<span class="highlight">Null Law:</span>          A + 1 = 1       A · 0 = 0
+<span class="highlight">Idempotent:</span>        A + A = A       A · A = A
+<span class="highlight">Complement:</span>        A + A' = 1      A · A' = 0
+<span class="highlight">Involution:</span>        (A')' = A
+<span class="highlight">Commutative:</span>       A + B = B + A   A · B = B · A
+<span class="highlight">Associative:</span>       (A+B)+C = A+(B+C)
+<span class="highlight">Distributive:</span>      A·(B+C) = A·B + A·C
+<span class="highlight">Absorption:</span>        A + A·B = A     A·(A+B) = A
+<span class="highlight">De Morgan's:</span>       (A+B)' = A'·B'  (A·B)' = A'+B'</div>
+
+            <h3 class="section-title">🗺️ K-Map Simplification</h3>
+            <div class="box box-success">
+                <div class="box-title">✅ K-Map Rules</div>
+                <ul>
+                    <li>Group sizes must be powers of 2: 1, 2, 4, 8, 16</li>
+                    <li>Make groups as <strong>large</strong> as possible</li>
+                    <li>Use <strong>minimum</strong> number of groups</li>
+                    <li>Groups can <strong>overlap</strong></li>
+                    <li>Groups can <strong>wrap around</strong> edges</li>
+                    <li>Every '1' must be in at least one group</li>
+                    <li>Don't care (X) can be 0 or 1 - use for larger groups</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">➕ Adder Circuits</h3>
+            <div class="quick-grid">
+                <div class="box box-info">
+                    <div class="box-title">Half Adder</div>
+                    <p>Adds 2 bits, outputs Sum and Carry</p>
+                    <div class="code-box">Sum = A ⊕ B
+Carry = A · B</div>
+                </div>
+                <div class="box box-success">
+                    <div class="box-title">Full Adder</div>
+                    <p>Adds 3 bits (A, B, Carry-in)</p>
+                    <div class="code-box">Sum = A ⊕ B ⊕ Cᵢₙ
+Cₒᵤₜ = AB + BCᵢₙ + ACᵢₙ</div>
+                </div>
+            </div>
+
+            <h3 class="section-title">🔀 Combinational Circuits</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Circuit</th>
+                            <th>Function</th>
+                            <th>I/O</th>
+                            <th>Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Decoder</strong></td>
+                            <td>Converts binary to one-hot</td>
+                            <td>n → 2ⁿ</td>
+                            <td>Memory address decode</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Encoder</strong></td>
+                            <td>Converts one-hot to binary</td>
+                            <td>2ⁿ → n</td>
+                            <td>Keyboard encoding</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Multiplexer</strong></td>
+                            <td>Selects one of many inputs</td>
+                            <td>2ⁿ data + n sel → 1</td>
+                            <td>Data routing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Demultiplexer</strong></td>
+                            <td>Routes one input to many</td>
+                            <td>1 + n sel → 2ⁿ</td>
+                            <td>Data distribution</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Chapter 2: Computer System -->
+        <article class="chapter" id="ch2">
+            <div class="chapter-header">
+                <div class="chapter-icon">💻</div>
+                <div class="chapter-title">
+                    <h2>Chapter 2: Computer System & Arithmetic</h2>
+                    <p>Architecture, registers, bus structure, and ALU operations</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">🏗️ Computer Architecture</h3>
+            
+            <div class="box box-info">
+                <div class="box-title">CPU Components</div>
+                <ul>
+                    <li><strong>Control Unit (CU):</strong> Directs all operations, fetches & decodes instructions</li>
+                    <li><strong>ALU:</strong> Performs arithmetic (+, -, ×, ÷) and logical (AND, OR, NOT) operations</li>
+                    <li><strong>Registers:</strong> High-speed temporary storage inside CPU</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">🚌 Bus Structure</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bus Type</th>
+                            <th>Purpose</th>
+                            <th>Direction</th>
+                            <th>Width Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Bus</strong></td>
+                            <td>Carries actual data</td>
+                            <td>Bidirectional</td>
+                            <td>32-bit, 64-bit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address Bus</strong></td>
+                            <td>Carries memory addresses</td>
+                            <td>Unidirectional (CPU→Memory)</td>
+                            <td>32-bit = 4GB addressable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control Bus</strong></td>
+                            <td>Carries control signals</td>
+                            <td>Bidirectional</td>
+                            <td>R/W, IRQ, Clock</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="code-box"><span class="highlight">Maximum Addressable Memory = 2ⁿ bytes</span>
+where n = number of address bus lines
+
+Example: 32-bit address bus
+Max Memory = 2³² = 4,294,967,296 bytes = <span class="highlight">4 GB</span></div>
+
+            <h3 class="section-title">📦 CPU Registers</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Register</th>
+                            <th>Full Name</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>PC</strong></td><td>Program Counter</td><td>Address of next instruction</td></tr>
+                        <tr><td><strong>IR</strong></td><td>Instruction Register</td><td>Holds current instruction</td></tr>
+                        <tr><td><strong>MAR</strong></td><td>Memory Address Register</td><td>Address for memory access</td></tr>
+                        <tr><td><strong>MBR/MDR</strong></td><td>Memory Buffer/Data Register</td><td>Data to/from memory</td></tr>
+                        <tr><td><strong>AC</strong></td><td>Accumulator</td><td>Stores ALU results</td></tr>
+                        <tr><td><strong>SP</strong></td><td>Stack Pointer</td><td>Top of stack address</td></tr>
+                        <tr><td><strong>PSW/FLAGS</strong></td><td>Program Status Word</td><td>Condition flags (Z, C, S, O)</td></tr>
+                        <tr><td><strong>GPR</strong></td><td>General Purpose Registers</td><td>R0-R15 or EAX, EBX, etc.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="section-title">📚 Stack Organization</h3>
+            <div class="box box-warning">
+                <div class="box-title">⚠️ Stack Operations (LIFO)</div>
+                <div class="code-box"><span class="highlight">PUSH operation:</span>
+SP ← SP - 1        (Decrement stack pointer)
+Memory[SP] ← Data  (Store data at new location)
+
+<span class="highlight">POP operation:</span>
+Data ← Memory[SP]  (Read data from top)
+SP ← SP + 1        (Increment stack pointer)</div>
+                <p><strong>Applications:</strong> Function calls, local variables, return addresses, expression evaluation, interrupt handling</p>
+            </div>
+
+            <h3 class="section-title">📍 Addressing Modes</h3>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Immediate Addressing
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Operand is in the instruction itself</strong></p>
+                            <div class="code-box">MOV R1, #25    ; R1 ← 25
+ADD R1, #10    ; R1 ← R1 + 10</div>
+                            <p>✅ Fast (no memory access) | ❌ Limited operand size</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Direct (Absolute) Addressing
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Address of operand in instruction</strong></p>
+                            <div class="code-box">MOV R1, 500    ; R1 ← Memory[500]
+EA = 500</div>
+                            <p>✅ Simple | ❌ Limited address space</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Indirect Addressing
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Address points to address of operand</strong></p>
+                            <div class="code-box">MOV R1, @500   ; R1 ← Memory[Memory[500]]
+If Memory[500] = 800, then EA = 800</div>
+                            <p>✅ Large address range | ❌ Two memory accesses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Register & Indexed Addressing
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="code-box"><span class="highlight">Register:</span>
+MOV R1, R2     ; R1 ← R2 (fastest, no memory access)
+
+<span class="highlight">Register Indirect:</span>
+MOV R1, (R2)   ; R1 ← Memory[R2]
+
+<span class="highlight">Indexed:</span>
+MOV R1, 100(R2) ; R1 ← Memory[100 + R2]
+Great for arrays: base + offset</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Relative & Base-Register Addressing
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div class="code-box"><span class="highlight">Relative (PC-Relative):</span>
+EA = PC + Displacement
+Used for branches: BEQ +20
+
+<span class="highlight">Base Register:</span>
+EA = Base Register + Displacement
+Used for relocatable code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title">🔢 ALU Arithmetic Operations</h3>
+            <div class="code-box"><span class="highlight">Binary Addition:</span>
+  1011    (11)
++ 0110    (6)
+------
+ 10001    (17)  ← Carry out indicates overflow for unsigned
+
+<span class="highlight">Subtraction using 2's Complement:</span>
+A - B = A + (2's complement of B)
+
+  1011 - 0110:
+  1011 + 1010 (2's comp of 0110)
+= 10101 → 0101 (ignore carry) = 5 ✓
+
+<span class="highlight">Binary Multiplication:</span>
+    101 (5)
+  ×  11 (3)
+  -----
+    101
+   101
+  -----
+   1111 (15) ✓
+
+<span class="highlight">Shift Operations:</span>
+Left Shift by n  = Multiply by 2ⁿ
+Right Shift by n = Divide by 2ⁿ</div>
+        </article>
+
+        <!-- Chapter 3: Processor -->
+        <article class="chapter" id="ch3">
+            <div class="chapter-header">
+                <div class="chapter-icon">⚙️</div>
+                <div class="chapter-title">
+                    <h2>Chapter 3: Processor & Control Unit</h2>
+                    <p>RISC vs CISC, pipelining, hazards, and control unit design</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">🔄 Instruction Cycle</h3>
+            <div class="code-box"><span class="highlight">1. FETCH:</span>
+   MAR ← PC
+   IR ← Memory[MAR]
+   PC ← PC + 1
+
+<span class="highlight">2. DECODE:</span>
+   Identify opcode
+   Determine addressing mode
+   Calculate effective address
+
+<span class="highlight">3. EXECUTE:</span>
+   Fetch operands
+   Perform operation in ALU
+   Store result
+
+<span class="highlight">4. INTERRUPT CHECK:</span>
+   If interrupt pending → handle it
+   Else → go to step 1</div>
+
+            <h3 class="section-title">⚡ RISC vs CISC</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>RISC</th>
+                            <th>CISC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Instructions</strong></td>
+                            <td>Small set (~100)</td>
+                            <td>Large set (200-300)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Instruction Length</strong></td>
+                            <td>Fixed (32-bit)</td>
+                            <td>Variable (1-15 bytes)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Memory Access</strong></td>
+                            <td>LOAD/STORE only</td>
+                            <td>Any instruction</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Registers</strong></td>
+                            <td>Many (32-64)</td>
+                            <td>Few (8-16)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CPI</strong></td>
+                            <td>~1 cycle</td>
+                            <td>2-15 cycles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control Unit</strong></td>
+                            <td>Hardwired</td>
+                            <td>Microprogrammed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pipelining</strong></td>
+                            <td>Easy to implement</td>
+                            <td>Complex</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code Size</strong></td>
+                            <td>Larger</td>
+                            <td>Smaller</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Examples</strong></td>
+                            <td>ARM, MIPS, RISC-V</td>
+                            <td>x86, x86-64, 68000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="section-title">🔧 Control Unit Types</h3>
+            <div class="quick-grid">
+                <div class="box box-info">
+                    <div class="box-title">Hardwired Control</div>
+                    <ul>
+                        <li>Uses combinational logic circuits</li>
+                        <li>Very fast execution</li>
+                        <li>Difficult to modify/debug</li>
+                        <li>Best for RISC processors</li>
+                        <li>Lower cost for simple ISA</li>
+                    </ul>
+                </div>
+                <div class="box box-warning">
+                    <div class="box-title">Microprogrammed Control</div>
+                    <ul>
+                        <li>Uses control memory (ROM)</li>
+                        <li>Slower than hardwired</li>
+                        <li>Easy to modify/update</li>
+                        <li>Best for CISC processors</li>
+                        <li>Microinstructions stored in ROM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="section-title">🚀 Pipelining</h3>
+            <div class="box box-success">
+                <div class="box-title">✅ 5-Stage MIPS Pipeline</div>
                 <ol>
-                    <li>IF: Instruction Fetch</li>
-                    <li>ID: Instruction Decode</li>
-                    <li>EX: Execute</li>
-                    <li>MEM: Memory Access</li>
-                    <li>WB: Write Back</li>
+                    <li><strong>IF (Instruction Fetch):</strong> Fetch instruction from memory</li>
+                    <li><strong>ID (Instruction Decode):</strong> Decode & read registers</li>
+                    <li><strong>EX (Execute):</strong> ALU operation or address calc</li>
+                    <li><strong>MEM (Memory Access):</strong> Load/Store data</li>
+                    <li><strong>WB (Write Back):</strong> Write result to register</li>
                 </ol>
             </div>
-            <div class="formula-box">Speedup = (n × k) / (k + n - 1)
-                n = instructions, k = stages
 
-                Example: 100 instructions, 5 stages
-                Without: 100 × 5 = 500 cycles
-                With: 5 + 99 = 104 cycles
-                Speedup = 500/104 ≈ 4.8×</div>
-            <h3>Pipeline Hazards</h3>
-            <table>
-                <tr>
-                    <th>Hazard</th>
-                    <th>Cause</th>
-                    <th>Solution</th>
-                </tr>
-                <tr>
-                    <td>Structural</td>
-                    <td>Resource conflict</td>
-                    <td>Duplicate resources, Stall</td>
-                </tr>
-                <tr>
-                    <td>Data (RAW)</td>
-                    <td>Read before Write done</td>
-                    <td>Forwarding, Stall, Reorder</td>
-                </tr>
-                <tr>
-                    <td>Control (Branch)</td>
-                    <td>Unknown next instruction</td>
-                    <td>Prediction, Delayed Branch</td>
-                </tr>
-            </table>
-        </section>
+            <div class="code-box"><span class="highlight">Pipeline Timing:</span>
+Without pipeline: n instructions × k stages = n×k cycles
+With pipeline:    k + (n-1) cycles
 
-        <section id="ch4">
-            <h2><span class="emoji">🗄️</span>Chapter 4: Memory & I/O Systems</h2>
-            <h3>Memory Hierarchy</h3>
-            <table>
-                <tr>
-                    <th>Level</th>
-                    <th>Type</th>
-                    <th>Speed</th>
-                    <th>Size</th>
-                    <th>Access Time</th>
-                </tr>
-                <tr>
-                    <td>0</td>
-                    <td>Registers</td>
-                    <td>Fastest</td>
-                    <td>
-                        <1KB< /td>
-                    <td>
-                        <1ns< /td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>L1 Cache</td>
-                    <td>Very Fast</td>
-                    <td>16-64KB</td>
-                    <td>1-2ns</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>L2 Cache</td>
-                    <td>Fast</td>
-                    <td>256KB-2MB</td>
-                    <td>3-10ns</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>L3 Cache</td>
-                    <td>Moderate</td>
-                    <td>4-32MB</td>
-                    <td>10-20ns</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>RAM</td>
-                    <td>Moderate</td>
-                    <td>4-64GB</td>
-                    <td>50-100ns</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>SSD</td>
-                    <td>Slow</td>
-                    <td>256GB-2TB</td>
-                    <td>10-100µs</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>HDD</td>
-                    <td>Slowest</td>
-                    <td>1-10TB</td>
-                    <td>5-10ms</td>
-                </tr>
-            </table>
-            <div class="formula-box">Hit Ratio (h) = Hits / (Hits + Misses)
-                Avg Access Time = h×T_cache + (1-h)×T_main
+<span class="highlight">Speedup Formula:</span>
+Speedup = (n × k) / (k + n - 1)
 
-                Example: h=0.9, T_cache=10ns, T_main=100ns
-                T_avg = 0.9×10 + 0.1×100 = 19ns</div>
-            <h3>Cache Mapping</h3>
-            <div class="info-box">
-                <h4>1. Direct Mapping:</h4>
-                <p>Each block → One fixed line</p>
-                <div class="formula-box">Line = Block mod (Number of Lines)</div>
-                <p>✓ Fast, Simple | ✗ High conflict misses</p>
+For large n: Speedup ≈ k (number of stages)
+
+<span class="highlight">Example:</span>
+100 instructions, 5 stages
+Without: 100 × 5 = 500 cycles
+With:    5 + 99 = 104 cycles
+Speedup = 500/104 ≈ <span class="highlight">4.8×</span></div>
+
+            <h3 class="section-title">⚠️ Pipeline Hazards</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hazard Type</th>
+                            <th>Cause</th>
+                            <th>Example</th>
+                            <th>Solutions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Structural</strong></td>
+                            <td>Resource conflict</td>
+                            <td>Single memory for I & D</td>
+                            <td>Duplicate resources, stall</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data (RAW)</strong></td>
+                            <td>Read After Write dependency</td>
+                            <td>ADD R1,R2; SUB R3,R1</td>
+                            <td>Forwarding, stall, NOP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control</strong></td>
+                            <td>Branch decision pending</td>
+                            <td>BEQ instruction</td>
+                            <td>Prediction, delayed branch</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="warning-box">
-                <h4>2. Set-Associative:</h4>
-                <p>Each block → N lines in a set</p>
-                <div class="formula-box">Set = Block mod (Number of Sets)</div>
-                <p>✓ Balanced | Most common (2-way, 4-way)</p>
+
+            <div class="box box-danger">
+                <div class="box-title">🔴 Data Hazard Types</div>
+                <ul>
+                    <li><strong>RAW (Read After Write):</strong> True dependency - most common</li>
+                    <li><strong>WAR (Write After Read):</strong> Anti-dependency</li>
+                    <li><strong>WAW (Write After Write):</strong> Output dependency</li>
+                </ul>
+                <p><strong>Solution:</strong> Data forwarding (bypassing) - send result directly from EX stage to next instruction's EX stage without waiting for WB</p>
             </div>
-            <div class="success-box">
-                <h4>3. Fully Associative:</h4>
-                <p>Any block → Any line</p>
-                <p>✓ Best hit rate, No conflicts | ✗ Expensive, Slow</p>
+        </article>
+
+        <!-- Chapter 4: Memory & I/O -->
+        <article class="chapter" id="ch4">
+            <div class="chapter-header">
+                <div class="chapter-icon">🗄️</div>
+                <div class="chapter-title">
+                    <h2>Chapter 4: Memory & I/O Systems</h2>
+                    <p>Memory hierarchy, cache mapping, virtual memory, and I/O techniques</p>
+                </div>
             </div>
-            <table>
-                <tr>
-                    <th>Type</th>
-                    <th>Placement</th>
-                    <th>Speed</th>
-                    <th>Hit Rate</th>
-                    <th>Cost</th>
-                </tr>
-                <tr>
-                    <td>Direct</td>
-                    <td>1 line</td>
-                    <td>Fastest</td>
-                    <td>Lowest</td>
-                    <td>Cheapest</td>
-                </tr>
-                <tr>
-                    <td>Set Assoc</td>
-                    <td>N lines</td>
-                    <td>Medium</td>
-                    <td>Medium</td>
-                    <td>Medium</td>
-                </tr>
-                <tr>
-                    <td>Fully Assoc</td>
-                    <td>Any line</td>
-                    <td>Slowest</td>
-                    <td>Highest</td>
-                    <td>Expensive</td>
-                </tr>
-            </table>
-            <h3>Page Replacement</h3>
-            <div class="info-box">
-                <h4>FIFO:</h4>
-                <p>Replace oldest page. Simple but suffers from Belady's Anomaly.</p>
+
+            <h3 class="section-title">📊 Memory Hierarchy</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Access Time</th>
+                            <th>Cost/GB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0</td><td>Registers</td><td>< 1 KB</td><td>< 1 ns</td><td>$$$$$$</td></tr>
+                        <tr><td>1</td><td>L1 Cache</td><td>32-64 KB</td><td>1-2 ns</td><td>$$$$$</td></tr>
+                        <tr><td>2</td><td>L2 Cache</td><td>256 KB - 1 MB</td><td>3-10 ns</td><td>$$$$</td></tr>
+                        <tr><td>3</td><td>L3 Cache</td><td>4-32 MB</td><td>10-20 ns</td><td>$$$</td></tr>
+                        <tr><td>4</td><td>Main Memory (RAM)</td><td>8-64 GB</td><td>50-100 ns</td><td>$$</td></tr>
+                        <tr><td>5</td><td>SSD</td><td>256 GB - 4 TB</td><td>25-100 µs</td><td>$</td></tr>
+                        <tr><td>6</td><td>HDD</td><td>1-20 TB</td><td>5-10 ms</td><td>¢</td></tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="success-box">
-                <h4>LRU (Least Recently Used):</h4>
-                <p>Replace page not used for longest time. Better performance.</p>
+
+            <div class="code-box"><span class="highlight">Cache Performance Formulas:</span>
+
+Hit Rate (h) = Cache Hits / Total Accesses
+Miss Rate = 1 - h
+
+<span class="highlight">Average Access Time:</span>
+T_avg = h × T_cache + (1-h) × T_main
+
+<span class="highlight">Example:</span>
+h = 0.95, T_cache = 2ns, T_main = 100ns
+T_avg = 0.95 × 2 + 0.05 × 100
+     = 1.9 + 5 = <span class="highlight">6.9 ns</span>
+
+<span class="highlight">Speedup from cache:</span>
+Speedup = T_main / T_avg = 100 / 6.9 ≈ 14.5×</div>
+
+            <h3 class="section-title">🗺️ Cache Mapping Techniques</h3>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        1. Direct Mapping
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Each memory block maps to exactly ONE cache line</strong></p>
+                            <div class="code-box">Cache Line = Block Number mod (Number of Lines)
+
+Address breakdown: | Tag | Line | Offset |
+
+Example: 1024 blocks, 32 cache lines
+Block 65 → Line 65 mod 32 = Line 1
+Block 97 → Line 97 mod 32 = Line 1 (conflict!)</div>
+                            <p>✅ Simple, fast lookup | ❌ High conflict misses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        2. Fully Associative Mapping
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Any block can go in ANY cache line</strong></p>
+                            <div class="code-box">Address breakdown: | Tag | Offset |
+
+Must search ALL lines in parallel
+Uses Content Addressable Memory (CAM)</div>
+                            <p>✅ No conflict misses, best hit rate | ❌ Expensive, slow comparison</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        3. Set-Associative Mapping
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Cache divided into sets, each set has N lines (N-way)</strong></p>
+                            <div class="code-box">Set = Block Number mod (Number of Sets)
+
+Address breakdown: | Tag | Set | Offset |
+
+Example: 2-way set associative
+- Block can go in either of 2 lines in its set
+- 4-way and 8-way are common</div>
+                            <p>✅ Balanced: good hit rate with reasonable cost | Most common design</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="warning-box">
-                <h4>Optimal:</h4>
-                <p>Replace page not needed for longest in future. Theoretical best.</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mapping Type</th>
+                            <th>Flexibility</th>
+                            <th>Lookup Speed</th>
+                            <th>Hit Rate</th>
+                            <th>Hardware Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Direct</td><td>Lowest</td><td>Fastest</td><td>Lowest</td><td>Cheapest</td></tr>
+                        <tr><td>Set-Associative</td><td>Medium</td><td>Medium</td><td>Good</td><td>Moderate</td></tr>
+                        <tr><td>Fully Associative</td><td>Highest</td><td>Slowest</td><td>Best</td><td>Expensive</td></tr>
+                    </tbody>
+                </table>
             </div>
-            <p><strong>Performance:</strong> Optimal < LRU < FIFO (page faults)</p>
-                    <h3>I/O Techniques</h3>
-                    <table>
+
+            <h3 class="section-title">📄 Virtual Memory & Page Replacement</h3>
+            <div class="box box-info">
+                <div class="box-title">Virtual Memory Concepts</div>
+                <ul>
+                    <li><strong>Page:</strong> Fixed-size block of virtual memory (4KB typical)</li>
+                    <li><strong>Frame:</strong> Physical memory block of same size</li>
+                    <li><strong>Page Table:</strong> Maps virtual pages to physical frames</li>
+                    <li><strong>Page Fault:</strong> Page not in RAM, must load from disk</li>
+                    <li><strong>TLB:</strong> Translation Lookaside Buffer - cache for page table entries</li>
+                </ul>
+            </div>
+
+            <h4 class="subsection-title">Page Replacement Algorithms</h4>
+            <div class="quick-grid">
+                <div class="quick-card">
+                    <h4>📥 FIFO</h4>
+                    <p>Replace oldest page first</p>
+                    <ul>
+                        <li>Simple to implement</li>
+                        <li>Suffers Belady's Anomaly</li>
+                        <li>Not always efficient</li>
+                    </ul>
+                </div>
+                <div class="quick-card">
+                    <h4>🕐 LRU</h4>
+                    <p>Replace least recently used</p>
+                    <ul>
+                        <li>Better hit rate than FIFO</li>
+                        <li>Needs tracking mechanism</li>
+                        <li>Most practical choice</li>
+                    </ul>
+                </div>
+                <div class="quick-card">
+                    <h4>🔮 Optimal (OPT)</h4>
+                    <p>Replace page not needed longest</p>
+                    <ul>
+                        <li>Theoretical best</li>
+                        <li>Impossible to implement</li>
+                        <li>Used for comparison</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p><strong>Performance ranking (page faults):</strong> Optimal &lt; LRU &lt; FIFO</p>
+
+            <h3 class="section-title">🔌 I/O Techniques</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
                             <th>Feature</th>
                             <th>Programmed I/O</th>
-                            <th>Interrupt I/O</th>
+                            <th>Interrupt-Driven I/O</th>
                             <th>DMA</th>
                         </tr>
-                        <tr>
-                            <td>CPU Involvement</td>
-                            <td>Continuous (polling)</td>
-                            <td>During ISR only</td>
-                            <td>Minimal (setup)</td>
-                        </tr>
-                        <tr>
-                            <td>Transfer</td>
-                            <td>CPU per word</td>
-                            <td>CPU per word</td>
-                            <td>DMA controller</td>
-                        </tr>
-                        <tr>
-                            <td>Speed</td>
-                            <td>Slow</td>
-                            <td>Moderate</td>
-                            <td>Fast</td>
-                        </tr>
-                        <tr>
-                            <td>CPU Utilization</td>
-                            <td>Poor</td>
-                            <td>Better</td>
-                            <td>Best</td>
-                        </tr>
-                        <tr>
-                            <td>Cost</td>
-                            <td>Low</td>
-                            <td>Medium</td>
-                            <td>High</td>
-                        </tr>
-                        <tr>
-                            <td>Best For</td>
-                            <td>Simple devices</td>
-                            <td>Moderate speed</td>
-                            <td>High-speed (disk)</td>
-                        </tr>
-                    </table>
-                    <div class="info-box">
-                        <h4>Programmed I/O:</h4>
-                        <p>CPU polls device status continuously. Simple but wastes CPU time.</p>
-                    </div>
-                    <div class="warning-box">
-                        <h4>Interrupt I/O:</h4>
-                        <p>Device interrupts CPU when ready. CPU can do other work meanwhile.</p>
-                        <div class="formula-box">1. Issue command
-                            2. CPU does other work
-                            3. Device interrupts
-                            4. CPU executes ISR
-                            5. Resume work</div>
-                    </div>
-                    <div class="success-box">
-                        <h4>DMA (Direct Memory Access):</h4>
-                        <p>Special controller transfers data without CPU.</p>
-                        <div class="formula-box">1. CPU initializes DMA
-                            2. DMA takes bus control
-                            3. Transfers entire block
-                            4. Sends interrupt when done</div>
-                        <p>Modes: Burst (fastest), Cycle Stealing, Transparent</p>
-                    </div>
-        </section>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>CPU Role</strong></td><td>Polls continuously</td><td>Handles interrupts</td><td>Setup only</td></tr>
+                        <tr><td><strong>Transfer</strong></td><td>CPU moves each byte</td><td>CPU moves each byte</td><td>DMA controller</td></tr>
+                        <tr><td><strong>CPU Utilization</strong></td><td>Poor (busy waiting)</td><td>Better</td><td>Best</td></tr>
+                        <tr><td><strong>Speed</strong></td><td>Slow</td><td>Moderate</td><td>Fast</td></tr>
+                        <tr><td><strong>Complexity</strong></td><td>Simple</td><td>Medium</td><td>Complex</td></tr>
+                        <tr><td><strong>Best For</strong></td><td>Simple devices</td><td>Keyboard, mouse</td><td>Disk, network</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <section id="rev">
-            <h2><span class="emoji">⚡</span>Quick Revision Cheatsheet</h2>
-            <h3>Number Conversions</h3>
-            <div class="formula-box">Binary→Octal: Group 3 bits
-                Binary→Hex: Group 4 bits
-                Octal→Binary: Each digit = 3 bits
-                Hex→Binary: Each digit = 4 bits</div>
-            <h3>Boolean Laws (One-Liners)</h3>
-            <div class="formula-box">Identity: A+0=A, A·1=A
-                Null: A+1=1, A·0=0
-                Complement: A+A'=1, A·A'=0
-                De Morgan's: (A+B)'=A'·B', (A·B)'=A'+B'
-                Absorption: A+A·B=A</div>
-            <h3>Essential Formulas</h3>
-            <div class="success-box">
-                <div class="formula-box">Memory = 2ⁿ (n=address bits)
-                    Cache Hit = h×T_cache + (1-h)×T_main
-                    Pipeline Speedup = (n×k)/(k+n-1)
-                    Full Adder: Sum=A⊕B⊕Cin, Cout=AB+BCin+ACin</div>
+            <div class="box box-success">
+                <div class="box-title">✅ DMA (Direct Memory Access)</div>
+                <div class="code-box"><span class="highlight">DMA Transfer Steps:</span>
+1. CPU initializes DMA controller (source, dest, count)
+2. DMA requests bus control
+3. CPU grants bus (cycle stealing or burst)
+4. DMA transfers data directly to/from memory
+5. DMA sends interrupt when complete
+6. CPU resumes normal operation
+
+<span class="highlight">DMA Modes:</span>
+• Burst: DMA holds bus until done (fastest)
+• Cycle Stealing: DMA takes 1 cycle at a time
+• Transparent: DMA uses idle bus cycles only</div>
             </div>
-            <h3>K-Map Rules</h3>
-            <ul>
-                <li>Group sizes: 1, 2, 4, 8, 16</li>
-                <li>Make groups LARGE</li>
-                <li>Can overlap & wrap</li>
-                <li>Minimize groups</li>
-            </ul>
-            <h3>RISC vs CISC Quick</h3>
-            <p><strong>RISC:</strong> Small set, Fixed length, LOAD/STORE, Many registers, ~1 CPI, Pipeline-friendly</p>
-            <p><strong>CISC:</strong> Large set, Variable, Any memory access, Few registers, Many CPI, Complex</p>
-            <h3>Important Exam Questions</h3>
-            <div class="danger-box">
-                <ul>
-                    <li>Convert (156.25)₁₀ to binary</li>
-                    <li>2's complement subtraction: 45-28</li>
-                    <li>Simplify using K-map</li>
-                    <li>Design full adder using half adders</li>
-                    <li>Compare addressing modes</li>
-                    <li>Calculate pipeline speedup</li>
-                    <li>Solve page replacement (FIFO, LRU, Optimal)</li>
-                    <li>Compare cache mapping techniques</li>
-                    <li>Explain DMA transfer process</li>
-                    <li>RISC vs CISC comparison</li>
-                </ul>
+        </article>
+
+        <!-- Chapter 5: Quick Revision -->
+        <article class="chapter" id="ch5">
+            <div class="chapter-header">
+                <div class="chapter-icon">⚡</div>
+                <div class="chapter-title">
+                    <h2>Quick Revision Cheatsheet</h2>
+                    <p>Essential formulas, shortcuts, and exam tips</p>
+                </div>
             </div>
-            <h3>Last Minute Tips</h3>
-            <div class="info-box">
-                <ul>
-                    <li>✅ Practice number conversions (10+ examples)</li>
-                    <li>✅ K-Maps: Remember wraparound!</li>
-                    <li>✅ 2's Complement: Invert + Add 1</li>
-                    <li>✅ Cache formulas for each mapping</li>
-                    <li>✅ Pipeline speedup ≈ stages (large n)</li>
-                    <li>✅ LRU performs better than FIFO</li>
-                    <li>✅ Know 5+ RISC vs CISC differences</li>
-                    <li>✅ Addressing mode examples</li>
-                </ul>
+
+            <h3 class="section-title">🔢 Quick Conversions</h3>
+            <div class="code-box"><span class="highlight">Binary ↔ Octal:</span> Group/expand 3 bits
+<span class="highlight">Binary ↔ Hex:</span> Group/expand 4 bits
+<span class="highlight">Any → Decimal:</span> Σ(digit × base^position)
+<span class="highlight">Decimal → Any:</span> Divide, note remainders
+<span class="highlight">Fractional:</span> Multiply by base, note integers</div>
+
+            <h3 class="section-title">📝 Must-Know Formulas</h3>
+            <div class="quick-grid">
+                <div class="quick-card">
+                    <h4>📊 Memory</h4>
+                    <ul>
+                        <li>Memory Size = 2ⁿ (n = addr bits)</li>
+                        <li>T_avg = h×Tc + (1-h)×Tm</li>
+                        <li>Miss Rate = 1 - Hit Rate</li>
+                    </ul>
+                </div>
+                <div class="quick-card">
+                    <h4>⚡ Pipeline</h4>
+                    <ul>
+                        <li>Time = k + (n-1) cycles</li>
+                        <li>Speedup = nk/(k+n-1)</li>
+                        <li>Max Speedup ≈ k stages</li>
+                    </ul>
+                </div>
+                <div class="quick-card">
+                    <h4>➕ Adders</h4>
+                    <ul>
+                        <li>Sum = A ⊕ B ⊕ Cin</li>
+                        <li>Cout = AB + BCin + ACin</li>
+                        <li>Cout = AB + Cin(A⊕B)</li>
+                    </ul>
+                </div>
             </div>
-            <h3>5-Minute Revision</h3>
-            <div class="warning-box">
+
+            <h3 class="section-title">⚖️ Quick Comparisons</h3>
+            <div class="code-box"><span class="highlight">RISC:</span> Small set | Fixed length | LOAD/STORE | Many regs | ~1 CPI | Easy pipeline
+<span class="highlight">CISC:</span> Large set | Variable | Any mem access | Few regs | Multi CPI | Complex
+
+<span class="highlight">Hardwired CU:</span> Fast, rigid, RISC-friendly
+<span class="highlight">Microprogrammed CU:</span> Slower, flexible, CISC-friendly
+
+<span class="highlight">Direct Cache:</span> 1 location | Fast | High conflicts
+<span class="highlight">Fully Assoc:</span> Any location | Slow | No conflicts
+<span class="highlight">Set Assoc:</span> N locations/set | Balanced | Practical
+
+<span class="highlight">Programmed I/O:</span> CPU polls, wastes time
+<span class="highlight">Interrupt I/O:</span> Device signals CPU
+<span class="highlight">DMA:</span> Controller handles transfer, CPU free</div>
+
+            <h3 class="section-title">📋 Important Exam Topics</h3>
+            <div class="box box-danger">
+                <div class="box-title">🔴 Frequently Asked Questions</div>
                 <ol>
-                    <li>Binary→Decimal: Powers of 2</li>
-                    <li>De Morgan's: Break bar, change operator</li>
-                    <li>Full Adder: Sum=A⊕B⊕Cin</li>
-                    <li>Stack: LIFO, PUSH decrements SP</li>
-                    <li>Instruction: Fetch→Decode→Execute</li>
-                    <li>Pipeline: IF→ID→EX→MEM→WB</li>
-                    <li>Data Hazard: RAW, solved by forwarding</li>
-                    <li>Cache Hit: h×T_cache+(1-h)×T_main</li>
-                    <li>DMA: Fastest I/O, no CPU</li>
-                    <li>LRU < FIFO (page faults)</li>
+                    <li>Convert numbers between bases (including fractions)</li>
+                    <li>Perform 2's complement subtraction</li>
+                    <li>Simplify Boolean expressions using K-map</li>
+                    <li>Design adder circuits (half/full adder)</li>
+                    <li>Compare RISC vs CISC architectures</li>
+                    <li>Calculate pipeline speedup and efficiency</li>
+                    <li>Solve cache mapping problems</li>
+                    <li>Calculate average memory access time</li>
+                    <li>Solve page replacement (FIFO, LRU, Optimal)</li>
+                    <li>Explain DMA transfer process</li>
+                    <li>Compare addressing modes with examples</li>
+                    <li>Identify and resolve pipeline hazards</li>
                 </ol>
             </div>
-        </section>
-    </div>
-    <footer>
-        <p>&copy; 2026 CSO Final Revision Notes | All Rights Reserved</p>
-        <p>Created by <a href="https://riyankhan.netlify.app/" target="_blank">Riyan Khan</a> with ❤️</p>
-        <p>📚 Study Smart, Score High! 🎯</p>
+
+            <h3 class="section-title">💡 Last-Minute Tips</h3>
+            <div class="box box-info">
+                <div class="box-title">Exam Success Tips</div>
+                <ul>
+                    <li>✅ Practice 10+ number conversion problems</li>
+                    <li>✅ Remember K-map wraparound rule</li>
+                    <li>✅ 2's Complement: Invert bits + Add 1</li>
+                    <li>✅ De Morgan's: Break the bar, change the sign</li>
+                    <li>✅ Pipeline speedup ≈ number of stages (for large n)</li>
+                    <li>✅ LRU has fewer page faults than FIFO</li>
+                    <li>✅ DMA is fastest I/O method (CPU does minimal work)</li>
+                    <li>✅ Know at least 5 RISC vs CISC differences</li>
+                    <li>✅ Forwarding solves RAW data hazards</li>
+                    <li>✅ Branch prediction solves control hazards</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">⏱️ 5-Minute Quick Review</h3>
+            <div class="box box-warning">
+                <div class="box-title">⚠️ Final Checklist</div>
+                <ol>
+                    <li><strong>Binary→Decimal:</strong> Powers of 2</li>
+                    <li><strong>De Morgan's:</strong> (A+B)' = A'B' and (AB)' = A'+B'</li>
+                    <li><strong>Full Adder:</strong> Sum = A⊕B⊕Cin</li>
+                    <li><strong>Stack:</strong> LIFO, PUSH decrements SP</li>
+                    <li><strong>Instruction Cycle:</strong> Fetch → Decode → Execute</li>
+                    <li><strong>5-Stage Pipeline:</strong> IF → ID → EX → MEM → WB</li>
+                    <li><strong>RAW Hazard:</strong> Solved by forwarding</li>
+                    <li><strong>Cache Formula:</strong> T = h×Tc + (1-h)×Tm</li>
+                    <li><strong>DMA:</strong> Fastest I/O, minimal CPU involvement</li>
+                    <li><strong>Page Faults:</strong> Optimal &lt; LRU &lt; FIFO</li>
+                </ol>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>📚 CSO Notes</h3>
+            <p>&copy; 2026 All Rights Reserved</p>
+            <p>Created with ❤️ by <a href="https://riyankhan.netlify.app/" target="_blank">Riyan Khan</a></p>
+            <p>Study Smart, Score High! 🎯</p>
+        </div>
     </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
     <script>
-        // Hamburger Menu Toggle
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+
         function toggleMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-            const navOverlay = document.getElementById('navOverlay');
-            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             navOverlay.classList.toggle('active');
-            
-            // Prevent body scroll when menu is open
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         }
 
         function closeMenu() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('navMenu');
-            const navOverlay = document.getElementById('navOverlay');
-            
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             navOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Back to Top Button
-        const backToTopBtn = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
+        hamburger.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', closeMenu);
+
+        // Close menu on nav link click
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = header.nextElementSibling;
+                const isActive = item.classList.contains('active');
 
-        // Collapsible sections
-        const collapsibles = document.querySelectorAll('.collapsible');
-        collapsibles.forEach(button => {
-            button.addEventListener('click', function () {
-                this.classList.toggle('active');
-                const content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
+                // Close all accordions in the same accordion container
+                item.parentElement.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.accordion-content').style.maxHeight = null;
+                });
+
+                // Open clicked one if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
                     content.style.maxHeight = content.scrollHeight + 'px';
                 }
             });
         });
 
-        // Smooth scrolling for anchor links
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Close menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        // Close menu on resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) closeMenu();
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // Close menu on mobile when clicking a link
-                    closeMenu();
-                    
-                    // Smooth scroll to target
-                    setTimeout(() => {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
-
-        // Close menu when clicking outside or pressing Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMenu();
-            }
-        });
-
-        // Close menu on window resize (if resizing to desktop)
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                closeMenu();
-            }
-        });
     </script>
 </body>
-
 </html>
